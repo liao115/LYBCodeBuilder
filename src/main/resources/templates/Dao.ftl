@@ -1,5 +1,6 @@
 package ${package_name}.mapper;
 import ${package_name}.domain.${table_name};
+import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Map;
 /**
@@ -7,6 +8,7 @@ import java.util.Map;
 * @author ${author}
 * @date ${date}
 */
+@Component
 public interface ${table_name}Mapper {
     //新增${table_annotation}
     int insert(${table_name} ${table_name?uncap_first});
