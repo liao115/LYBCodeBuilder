@@ -40,12 +40,12 @@
             <#list model_column as model>
                 <#if (model.columnType = 'VARCHAR' || model.columnType = 'TEXT')>
         <if test='${model.changeColumnName?uncap_first} != null and ${model.changeColumnName?uncap_first} != ""'>
-            and ${model.columnName} = ${r'${'}${model.changeColumnName?uncap_first}${r'}'} <#if model_has_next>,</#if>
+            and ${model.columnName} = ${r'${'}${model.changeColumnName?uncap_first}${r'}'} 
         </if>
                 </#if>
                 <#if (model.columnType != 'VARCHAR' && model.columnType != 'TEXT')>
         <if test='${model.changeColumnName?uncap_first} != null'>
-            and ${model.columnName} = ${r'${'}${model.changeColumnName?uncap_first}${r'}'} <#if model_has_next>,</#if>
+            and ${model.columnName} = ${r'${'}${model.changeColumnName?uncap_first}${r'}'} 
         </if>
                 </#if>
             </#list>
