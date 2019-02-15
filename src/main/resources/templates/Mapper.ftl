@@ -109,5 +109,13 @@ ds
         where
         <include refid="column_where"/>
     </select>
+    <select id="list" resultMap="BaseResultMap">
+        SELECT
+        <include refid="all_column"/>
+        from
+        <include refid="table_name"/>
+        where
+        <include refid="column_where"/>
+    </select>
 
 </mapper>
