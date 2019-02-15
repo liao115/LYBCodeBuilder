@@ -5,10 +5,10 @@
     <resultMap id="BaseResultMap" type="${package_name}.domain.${table_name}">
         <#if model_column?exists>
             <#list model_column as model>
-                <#if (model.columnName = primaryKey)>
+                <#if (primaryKey??  && model.columnName = primaryKey)>
         <id column="${model.columnName}" property="${model.changeColumnName?uncap_first}"/>
                 </#if>
-                <#if (model.columnName != primaryKey)>
+                <#if (!primaryKey?? || model.columnName != primaryKey)>
         <result column="${model.columnName}" property="${model.changeColumnName?uncap_first}"/>
                 </#if>
             </#list>
@@ -76,7 +76,9 @@ ds
     <delete id="delete">
         delete from
         <include refid="table_name"/>
+        <#if (primaryKey??)>
         where ${primaryKey} = ${r'${'}${changePrimaryKey?uncap_first}${r'}'}
+        </#if>
     </delete>
 
     <update id="update">
@@ -84,7 +86,9 @@ ds
         <include refid="table_name"/>
         set
         <include refid="column_update"/>
+         <#if (primaryKey??)>
         where ${primaryKey} = ${r'${'}${changePrimaryKey?uncap_first}${r'}'}
+         </#if>
     </update>
 
     <select id="findById" resultMap="BaseResultMap">
@@ -92,10 +96,12 @@ ds
         <include refid="all_column" />
         from
         <include refid="table_name"/>
+         <#if (primaryKey??)>
         where ${primaryKey} = ${r'${'}${changePrimaryKey?uncap_first}${r'}'}
+         </#if>
     </select>
 
-    <select id="list" resultMap="BaseResultMap">
+    <select id="findPage" resultMap="BaseResultMap">
         SELECT
         <include refid="all_column"/>
         from
