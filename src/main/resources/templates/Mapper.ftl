@@ -51,7 +51,7 @@
             </#list>
         </#if>
     </sql>
-ds
+
     <sql id="column_update">
         <#if model_column?exists>
             <#list model_column as model>
