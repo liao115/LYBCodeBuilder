@@ -37,6 +37,7 @@
 
     <sql id="column_where">
         <#if model_column?exists>
+            where
             <#list model_column as model>
                 <#if (model.columnType = 'VARCHAR' || model.columnType = 'TEXT')>
         <if test='${model.changeColumnName?uncap_first} != null and ${model.changeColumnName?uncap_first} != ""'>
@@ -106,7 +107,6 @@
         <include refid="all_column"/>
         from
         <include refid="table_name"/>
-        where
         <include refid="column_where"/>
     </select>
     <select id="list" resultMap="BaseResultMap">
