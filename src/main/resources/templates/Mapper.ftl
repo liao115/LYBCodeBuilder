@@ -29,7 +29,7 @@
     <sql id="all_property">
         <#if model_column?exists>
             <#list model_column as model>
-                ${model.changeColumnName?uncap_first}<#if model_has_next>,</#if>
+                ${r'#{'}${model.changeColumnName?uncap_first}${r'}'}<#if model_has_next>,</#if>
             </#list>
         </#if>
     </sql>
@@ -41,12 +41,12 @@
             <#list model_column as model>
                 <#if (model.columnType = 'VARCHAR' || model.columnType = 'TEXT')>
         <if test='${model.changeColumnName?uncap_first} != null and ${model.changeColumnName?uncap_first} != ""'>
-            and `${model.columnName}` = ${r'${'}${model.changeColumnName?uncap_first}${r'}'}
+            and `${model.columnName}` = ${r'#{'}${model.changeColumnName?uncap_first}${r'}'}
         </if>
                 </#if>
                 <#if (model.columnType != 'VARCHAR' && model.columnType != 'TEXT')>
         <if test='${model.changeColumnName?uncap_first} != null'>
-            and `${model.columnName}` = ${r'${'}${model.changeColumnName?uncap_first}${r'}'}
+            and `${model.columnName}` = ${r'#{'}${model.changeColumnName?uncap_first}${r'}'}
         </if>
                 </#if>
             </#list>
@@ -58,7 +58,7 @@
         <#if model_column?exists>
             <#list model_column as model>
         <if test='${model.changeColumnName?uncap_first} != null'>
-            `${model.columnName}` = ${r'${'}${model.changeColumnName?uncap_first}${r'}'}<#if model_has_next>,</#if>
+            `${model.columnName}` = ${r'#{'}${model.changeColumnName?uncap_first}${r'}'}<#if model_has_next>,</#if>
         </if>
             </#list>
         </#if>
@@ -79,7 +79,7 @@
         delete from
         <include refid="table_name"/>
         <#if (primaryKey??)>
-        where `${primaryKey}` = ${r'${'}${changePrimaryKey?uncap_first}${r'}'}
+        where `${primaryKey}` = ${r'#{'}${changePrimaryKey?uncap_first}${r'}'}
         </#if>
     </delete>
 
@@ -89,7 +89,7 @@
         set
         <include refid="column_update"/>
          <#if (primaryKey??)>
-        where `${primaryKey}` = ${r'${'}${changePrimaryKey?uncap_first}${r'}'}
+        where `${primaryKey}` = ${r'#{'}${changePrimaryKey?uncap_first}${r'}'}
          </#if>
     </update>
 
@@ -99,7 +99,7 @@
         from
         <include refid="table_name"/>
          <#if (primaryKey??)>
-        where `${primaryKey}` = ${r'${'}${changePrimaryKey?uncap_first}${r'}'}
+        where `${primaryKey}` = ${r'#{'}${changePrimaryKey?uncap_first}${r'}'}
          </#if>
     </select>
 
