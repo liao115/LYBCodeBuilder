@@ -3,10 +3,13 @@
 <mapper namespace="${package_name}.mapper.${table_name}Mapper">
 
     <resultMap id="BaseResultMap" type="${package_name}.domain.${table_name}">
+        <#if (primaryKey??)>
+        <id column="${primaryKey}" property="${changePrimaryKey?uncap_first}"/>
+        </#if>
         <#if model_column?exists>
             <#list model_column as model>
                 <#if (primaryKey??  && model.columnName = primaryKey)>
-        <id column="${model.columnName}" property="${model.changeColumnName?uncap_first}"/>
+        <id column="${primaryKey}" property="${primaryKey?uncap_first}"/>
                 </#if>
                 <#if (!primaryKey?? || model.columnName != primaryKey)>
         <result column="${model.columnName}" property="${model.changeColumnName?uncap_first}"/>
@@ -20,6 +23,9 @@
     </sql>
 
     <sql id="all_column">
+        <#if (primaryKey??)>
+                `${primaryKey}`,
+        </#if>
         <#if model_column?exists>
             <#list model_column as model>
                 `${model.columnName}`<#if model_has_next>,</#if>
@@ -27,6 +33,9 @@
         </#if>
     </sql>
     <sql id="all_property">
+        <#if (primaryKey??)>
+                ${r'#{'}${changePrimaryKey?uncap_first}${r'}'}
+        </#if>
         <#if model_column?exists>
             <#list model_column as model>
                 ${r'#{'}${model.changeColumnName?uncap_first}${r'}'}<#if model_has_next>,</#if>
@@ -36,6 +45,9 @@
 
 
     <sql id="column_where">
+        <#if (primaryKey??)>
+            and `${primaryKey}` = ${r'#{'}${changePrimaryKey?uncap_first}${r'}'}
+        </#if>
         <#if model_column?exists>
             <where>
             <#list model_column as model>

@@ -23,6 +23,7 @@ import ${responseResultPath};
 * @date ${date}
 */
 @Controller
+@RequestMapping("${table_name?uncap_first}")
 public class ${table_name}Controller {
 
     private static final Logger logger = LoggerFactory.getLogger(${table_name}Controller.class);
@@ -42,7 +43,7 @@ public class ${table_name}Controller {
             ${table_name?uncap_first}Service.insert(${table_name?uncap_first});
             return result;
         } catch (Exception e) {
-            logger.error("${table_name} add error:[]",e);
+            logger.error("${table_name} add error:{}",e);
             return new ResponseResult(CodeConstants.system_error.getCode(),CodeConstants.system_error.getMsg());
         }
     }
@@ -59,7 +60,7 @@ public class ${table_name}Controller {
             ${table_name?uncap_first}Service.delete(id);
             return result;
         } catch (Exception e) {
-            logger.error("${table_name} delete error:[]",e);
+            logger.error("${table_name} delete error:{}",e);
             return new ResponseResult(CodeConstants.system_error.getCode(),CodeConstants.system_error.getMsg());
         }
     }
@@ -76,7 +77,7 @@ public class ${table_name}Controller {
             ${table_name?uncap_first}Service.findById(id);
             return result;
         } catch (Exception e) {
-            logger.error("${table_name} findById error:[]",e);
+            logger.error("${table_name} findById error:{}",e);
             return new ResponseResult(CodeConstants.system_error.getCode(),CodeConstants.system_error.getMsg());
         }
     }
@@ -93,7 +94,7 @@ public class ${table_name}Controller {
             ${table_name?uncap_first}Service.update(${table_name?uncap_first});
             return result;
         } catch (Exception e) {
-            logger.error("${table_name} update error:[]",e);
+            logger.error("${table_name} update error:{}",e);
             return new ResponseResult(CodeConstants.system_error.getCode(),CodeConstants.system_error.getMsg());
         }
     }
@@ -110,7 +111,7 @@ public class ${table_name}Controller {
             List<${table_name}> list = ${table_name?uncap_first}Service.list(paramMap);
             return result.setData(list);
         } catch (Exception e) {
-            logger.error("${table_name} list error:[]",e);
+            logger.error("${table_name} list error:{}",e);
             return new ResponseResult(CodeConstants.system_error.getCode(),CodeConstants.system_error.getMsg());
         }
     }

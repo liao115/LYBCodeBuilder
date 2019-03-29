@@ -13,9 +13,14 @@ import java.util.Date;
 */
 @Data
 public class ${table_name} {
+    /**
+    *${primaryKey}
+    */
+        <#if (primaryKey??)>
+     private Long ${primaryKey?uncap_first};
+        </#if>
 <#if model_column?exists>
     <#list model_column as model>
-
     /**
     *${model.columnComment!}
     */
