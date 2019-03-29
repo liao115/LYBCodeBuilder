@@ -4,7 +4,7 @@ import ${package_name}.service.${table_name}Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Map;
-
+import java.util.List;
 /**
 * 描述：${table_annotation} 服务实现层
 * @author ${author}
@@ -25,7 +25,7 @@ public class ${table_name}ServiceImpl implements ${table_name}Service {
     //删除${table_annotation}
     @Override
     public int delete(Long id){
-        return ${table_name?uncap_first}Mapper.delete(${table_name?uncap_first});
+        return ${table_name?uncap_first}Mapper.delete(id);
     }
 
     //查找${table_annotation}

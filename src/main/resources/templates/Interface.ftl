@@ -1,6 +1,7 @@
 package ${package_name}.service;
 import ${package_name}.domain.${table_name};
 import java.util.Map;
+import java.util.List;
 /**
 * 描述：${table_annotation} 服务实现层接口
 * @author ${author}
