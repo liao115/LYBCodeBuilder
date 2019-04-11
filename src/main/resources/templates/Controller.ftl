@@ -16,18 +16,21 @@ import ${package_name}.domain.${table_name};
 import ${codeConstantsPath};
 import ${idGenPath};
 import ${responseResultPath};
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 /**
 * 描述：${table_annotation} 控制层
 * @author ${author}
 * @date ${date}
 */
+//@CrossOrigin /** 跨域 **/
 @Controller
 @RequestMapping("${table_name?uncap_first}")
 public class ${table_name}Controller {
 
-    private static final Logger logger = LoggerFactory.getLogger(${table_name}Controller.class);
-
+    static final Logger logger = LoggerFactory.getLogger(${table_name}Controller.class);
+    @Autowired
     private ${table_name}Service ${table_name?uncap_first}Service;
 
     /**
