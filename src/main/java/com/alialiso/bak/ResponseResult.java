@@ -1,13 +1,13 @@
 package com.alialiso.bak;
 
 import lombok.Data;
-import org.springframework.ui.ModelMap;
+import java.io.Serializable;
 /**
  * @author 廖育彬
  * @date 2018/5/5.
  */
 @Data
-public class ResponseResult extends ModelMap {
+public class ResponseResult implements Serializable  {
     private static final long serialVersionUID = 1L;
 
     private String code;
