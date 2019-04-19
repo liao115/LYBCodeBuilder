@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 * @author ${author}
 * @date ${date}
 */
-//@CrossOrigin /** 跨域 **/
+@CrossOrigin /** 跨域 **/
 @Controller
 @RequestMapping("${table_name?uncap_first}")
 public class ${table_name}Controller {

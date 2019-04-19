@@ -45,11 +45,13 @@
 
 
     <sql id="column_where">
-        <#if (primaryKey??)>
-            and `${primaryKey}` = ${r'#{'}${changePrimaryKey?uncap_first}${r'}'}
-        </#if>
         <#if model_column?exists>
             <where>
+                <#if (primaryKey??)>
+         <if test='${changePrimaryKey?uncap_first} != null'>
+            and `${primaryKey}` = ${r'#{'}${changePrimaryKey?uncap_first}${r'}'}
+         </if>
+                </#if>
             <#list model_column as model>
                 <#if (model.columnType = 'VARCHAR' || model.columnType = 'TEXT')>
         <if test='${model.changeColumnName?uncap_first} != null and ${model.changeColumnName?uncap_first} != ""'>
