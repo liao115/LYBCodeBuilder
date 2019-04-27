@@ -34,7 +34,7 @@
     </sql>
     <sql id="all_property">
         <#if (primaryKey??)>
-                ${r'#{'}${changePrimaryKey?uncap_first}${r'}'}
+                ${r'#{'}${changePrimaryKey?uncap_first}${r'}'},
         </#if>
         <#if model_column?exists>
             <#list model_column as model>
